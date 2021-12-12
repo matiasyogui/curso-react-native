@@ -6,7 +6,7 @@ export const AddItem = ({ setInput, onAdd }) => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Escribe aqui!"
+        placeholder="Escribe un nuevo post!"
         style={styles.input}
         onChangeText={(text) => setInput(text)}
       />

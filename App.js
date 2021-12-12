@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { AddItem } from "./components/AddItem";
-import { ListItem } from "./components/ListItem";
-import { ModalApp } from "./components/ModalApp";
+import AppLoading from "expo-app-loading";
+import { Header } from "./components/Header";
+import { NewPost } from "./pages/NewPost";
+import { Posts } from "./pages/Posts";
+import { useFonts } from "expo-font";
 
 export default function App() {
   const [list, setList] = useState([]);
@@ -11,6 +13,13 @@ export default function App() {
   const [itemSelected, setItemSelected] = useState(null);
   const [modal, setModal] = useState(false);
   const [id, setId] = useState(0);
+
+  const [loaded] = useFonts({
+    Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
+    PoppinsBold: require("./assets/fonts/Poppins-Bold.ttf"),
+  });
+
+  !loaded && <AppLoading />;
 
   const onAdd = () => {
     setId(id + 1);
@@ -28,22 +37,33 @@ export default function App() {
     setModal(false);
   };
 
-  return (
-    <View style={styles.container}>
-      <ModalApp
+  let content = <NewPost setInput={setInput} onAdd={onAdd} />;
+
+  if (list.length != 0) {
+    content = (
+      <Posts
+        list={list}
+        onHandleModal={onHandleModal}
         modal={modal}
         setModal={setModal}
         onHandleDelete={onHandleDelete}
         itemSelected={itemSelected}
       />
-      <AddItem setInput={setInput} onAdd={onAdd} />
-      <ListItem list={list} onHandleModal={onHandleModal} />
-    </View>
+    );
+  }
+
+  return (
+    <>
+      <Header />
+      <View style={styles.container}>{content}</View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     height: "100%",
+    width: "90%",
+    fontFamily: "Poppins",
   },
 });

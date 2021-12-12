@@ -4,25 +4,28 @@ import React from "react";
 
 export const ListItem = ({ list, onHandleModal }) => {
   return (
-    <View style={styles.container}>
-      {list.length > 0 ? (
-        <FlatList
-          data={list}
-          renderItem={(data) => (
-            <View style={styles.container} key={data.item.value}>
-              <Text style={styles.texto}>{data.item.value}</Text>
-              <Button
-                title="X"
-                onPress={() => onHandleModal(data.item)}
-              ></Button>
-            </View>
-          )}
-          keyExtractor={(item) => item.id}
-        ></FlatList>
-      ) : (
-        <Text>Todavia no hay items.</Text>
-      )}
-    </View>
+    <>
+      <Text>POSTS: </Text>
+      <View style={styles.container}>
+        {list.length > 0 ? (
+          <FlatList
+            data={list}
+            renderItem={(data) => (
+              <View style={styles.container} key={data.item.value}>
+                <Text style={styles.texto}>{data.item.value}</Text>
+                <Button
+                  title="X"
+                  onPress={() => onHandleModal(data.item)}
+                ></Button>
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+          ></FlatList>
+        ) : (
+          <Text>Todavia no hay items.</Text>
+        )}
+      </View>
+    </>
   );
 };
 
