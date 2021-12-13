@@ -7,7 +7,7 @@ export const ListItem = ({ list, onHandleModal }) => {
     <>
       <Text>POSTS: </Text>
       <View style={styles.container}>
-        {list.length > 0 ? (
+       {/* {list.length > 0 ? (
           <FlatList
             data={list}
             renderItem={(data) => (
@@ -23,7 +23,7 @@ export const ListItem = ({ list, onHandleModal }) => {
           ></FlatList>
         ) : (
           <Text>Todavia no hay items.</Text>
-        )}
+        )} */}
       </View>
     </>
   );
