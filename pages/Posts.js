@@ -29,6 +29,7 @@ export const Posts = ({
       <ListItem list={list} onHandleModal={onHandleModal} />
  */}  
       <Text>Todavia no hay items.</Text>
+      <Button title="Todos los foros" onPress={() => {navigation.navigate('Forums')}} />
       <Button title="+" style={styles.boton} onPress={() => {navigation.navigate('NewPost')}} />
 
     </View>

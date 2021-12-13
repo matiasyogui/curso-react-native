@@ -1,5 +1,5 @@
 import { Colors } from '../constants/Colors';
-import {Modal} from 'react-native-web';
+import { Forums } from '../pages/Forums';
 import { NavigationContainer } from "@react-navigation/native";
 import { NewPost } from "../pages/NewPost";
 import { Posts } from "../pages/Posts";
@@ -21,6 +21,7 @@ export const AppNavigator = ({setInput, onAdd, list, onHandleModal, modal, setMo
       }}>
         <Stack.Screen name="Posts" component={Posts} />
         <Stack.Screen name="NewPost" component={NewPost} />
+        <Stack.Screen name="Forums" component={Forums} />
       </Stack.Navigator>
     </NavigationContainer>
   );
