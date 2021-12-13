@@ -28,7 +28,7 @@ export const Posts = ({
       />
       <ListItem list={list} onHandleModal={onHandleModal} />
  */}  
-      <Text>Todavia no hay items.</Text>
+      <Text style={{fontFamily:"PoppinsBold"}}>Todavia no hay items.</Text>
       <Button title="Todos los foros" onPress={() => {navigation.navigate('Forums')}} />
       <Button title="+" style={styles.boton} onPress={() => {navigation.navigate('NewPost')}} />
 
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "space-between",
     alignItems: "center",
-    alignSelf:"center"
+    alignSelf:"center",
+    fontFamily: "Poppins"
   }
 });
