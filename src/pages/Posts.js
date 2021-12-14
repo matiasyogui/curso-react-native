@@ -5,6 +5,7 @@ import { Header } from "../components/Header";
 import { ListItem } from "../components/ListItem";
 import { ModalApp } from "../components/ModalApp";
 import React from "react";
+import { posts } from "../data/posts";
 import { useNavigation } from "@react-navigation/core";
 
 export const Posts = ({
@@ -15,7 +16,6 @@ export const Posts = ({
   onHandleDelete,
   itemSelected,
 }) => {
-
   const navigation = useNavigation();
 
   return (
@@ -26,26 +26,21 @@ export const Posts = ({
         onHandleDelete={onHandleDelete}
         itemSelected={itemSelected}
       />
-      <ListItem list={list} onHandleModal={onHandleModal} />
- */}  
-      <Text style={{fontFamily:"PoppinsBold"}}>Todavia no hay items.</Text>
-      <Button title="Todos los foros" onPress={() => {navigation.navigate('Forums')}} />
-      <Button title="+" style={styles.boton} onPress={() => {navigation.navigate('NewPost')}} />
-
+ */}
+      <ListItem list={posts} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  boton:{
+  boton: {
     backgroundColor: Colors.secondary,
   },
   container: {
     width: "90%",
     height: "100%",
-    justifyContent: "space-between",
     alignItems: "center",
-    alignSelf:"center",
-    fontFamily: "Poppins"
-  }
+    alignSelf: "center",
+    fontFamily: "Poppins",
+  },
 });
