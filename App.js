@@ -2,22 +2,15 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import AppLoading from "expo-app-loading";
-import { AppNavigator } from "./src/navigation/AppNavigator";
+import { Provider } from "react-redux";
 import { TabNavigator } from "./src/navigation/TabNavigator";
+import store from "./src/store";
 import { useFonts } from "expo-font";
 
 export default function App() {
   const [list, setList] = useState([]);
-  const [input, setInput] = useState("");
   const [itemSelected, setItemSelected] = useState(null);
   const [modal, setModal] = useState(false);
-  const [id, setId] = useState(0);
-
-  const onAdd = () => {
-    setId(id + 1);
-    setList([...list, { id: id, value: input }]);
-    console.log(id);
-  };
 
   const onHandleModal = (item) => {
     setItemSelected(item);
@@ -51,9 +44,9 @@ export default function App() {
 
   return (
     <>
-      {/* 
-      <AppNavigator /> */}
-      <TabNavigator />
+      <Provider store={store}>
+        <TabNavigator />
+      </Provider>
     </>
   );
 }

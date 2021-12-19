@@ -1,23 +1,16 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
-import { Header } from "../components/Header";
 import { ListItem } from "../components/ListItem";
 import { ModalApp } from "../components/ModalApp";
 import React from "react";
-import { posts } from "../data/posts";
 import { useNavigation } from "@react-navigation/core";
 
-export const Posts = ({
-  list,
-  onHandleModal,
-  modal,
-  setModal,
-  onHandleDelete,
-  itemSelected,
-}) => {
+export const Posts = () => {
   const navigation = useNavigation();
 
+  let posts = useSelector((state) => state.posts.posts);
   return (
     <View style={styles.container}>
       {/* <ModalApp
@@ -27,7 +20,7 @@ export const Posts = ({
         itemSelected={itemSelected}
       />
  */}
-      <ListItem list={posts} />
+      <ListItem posts={posts} />
     </View>
   );
 };

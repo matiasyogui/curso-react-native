@@ -2,15 +2,16 @@ import { Button, FlatList, StyleSheet, Text, View } from "react-native";
 
 import { ForumItem } from "./ForumItem";
 import React from "react";
+import { useSelector } from "react-redux";
 
-export const ListItem = ({ list /*, onHandleModal */ }) => {
+export const ListItem = ({ posts }) => {
   return (
     <>
-      <Text style={{ fontFamily: "PoppinsBold" }}>POSTS: </Text>
+      <Text style={{ fontFamily: "PoppinsBold" }}>POSTS:</Text>
       <View style={styles.container}>
-        {list.length > 0 ? (
+        {posts.length > 0 ? (
           <FlatList
-            data={list}
+            data={posts}
             renderItem={(data) => <ForumItem post={data.item} />}
             keyExtractor={(item) => item.id}
           ></FlatList>

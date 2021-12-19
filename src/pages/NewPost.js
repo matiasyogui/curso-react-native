@@ -2,10 +2,10 @@ import { AddItem } from "../components/AddItem";
 import React from "react";
 import { View } from "react-native";
 
-export const NewPost = ({ setInput, onAdd }) => {
+export const NewPost = () => {
   return (
     <View>
-      <AddItem setInput={setInput} onAdd={onAdd} />
+      <AddItem />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-export const forums = [
+export const FORUMS = [
   {
     id: 1,
     name: "javascript",
