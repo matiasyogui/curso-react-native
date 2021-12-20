@@ -1,9 +1,14 @@
-import { FILTERED_POSTS, NEW_POST } from "../actions/posts.action";
+import {
+  FILTERED_POSTS,
+  GET_POSTS,
+  NEW_POST,
+  getPosts,
+} from "../actions/posts.action";
 
 import { POSTS } from "../../data/posts";
 
 const initialState = {
-  posts: POSTS,
+  posts: [], //POSTS,
   filteredPosts: [],
   selected: null,
 };
@@ -11,11 +16,12 @@ const initialState = {
 export const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FILTERED_POSTS:
+      console.log(action.posts);
       console.log(action.forumID);
       return {
         ...state,
-        filteredPosts: state.posts.filter(
-          (post) => post.forum == action.forumID
+        filteredPosts: action.posts.filter(
+          (post) => post.forumID == action.forumID
         ),
       };
     case NEW_POST:
@@ -28,6 +34,11 @@ export const PostsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, newItem],
+      };
+    case GET_POSTS:
+      return {
+        ...state,
+        posts: action.payload,
       };
 
     default:

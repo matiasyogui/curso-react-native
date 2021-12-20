@@ -1,16 +1,22 @@
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { ListItem } from "../components/ListItem";
 import { ModalApp } from "../components/ModalApp";
-import React from "react";
+import { getPosts } from "../store/actions/posts.action";
 import { useNavigation } from "@react-navigation/core";
 
 export const Posts = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts);
 
-  let posts = useSelector((state) => state.posts.posts);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
   return (
     <View style={styles.container}>
       {/* <ModalApp

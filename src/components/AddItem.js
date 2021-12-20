@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { newPost } from "../store/actions/posts.action";
 import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/core";
 
 export const AddItem = () => {
   const [selectedForum, setSelectedForum] = useState("1");
@@ -13,11 +14,13 @@ export const AddItem = () => {
   const [id, setId] = useState(8);
 
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const onAdd = () => {
     setId(id + 1);
     console.log("additem " + id, inputTitle, inputDescription, selectedForum);
     dispatch(newPost(id, inputTitle, inputDescription, selectedForum));
+    navigation.navigate("Posts");
   };
 
   return (
