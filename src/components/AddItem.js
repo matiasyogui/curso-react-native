@@ -1,8 +1,11 @@
 import { Button, StyleSheet, TextInput, View } from "react-native";
 import React, { useState } from "react";
 
+import { Colors } from "../constants/Colors";
+import { ImageSelector } from "./ImageSelector";
 import { Picker } from "@react-native-picker/picker";
 import { newPost } from "../store/actions/posts.action";
+import { selectForum } from "../store/actions/forums.action";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
 
@@ -11,17 +14,6 @@ export const AddItem = () => {
 
   const [inputTitle, setInputTitle] = useState("");
   const [inputDescription, setInputDescription] = useState("");
-  const [id, setId] = useState(8);
-
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-
-  const onAdd = () => {
-    setId(id + 1);
-    console.log("additem " + id, inputTitle, inputDescription, selectedForum);
-    dispatch(newPost(id, inputTitle, inputDescription, selectedForum));
-    navigation.navigate("Posts");
-  };
 
   return (
     <View style={styles.container}>
@@ -45,7 +37,16 @@ export const AddItem = () => {
         <Picker.Item label="react-native" value="3" />
         <Picker.Item label="java" value="4" />
       </Picker>
-      <Button title="AGREGAR" onPress={onAdd} />
+
+      <ImageSelector
+        inputTitle={inputTitle}
+        inputDescription={inputDescription}
+        selectedForum={selectedForum}
+        setInputTitle={setInputTitle}
+        setInputDescription={setInputTitle}
+        setSelectedForum={setSelectedForum}
+        onImage={(image) => console.log(image)}
+      />
     </View>
   );
 };

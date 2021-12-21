@@ -12,7 +12,9 @@ export const ListItem = ({ posts }) => {
         {posts.length > 0 ? (
           <FlatList
             data={posts}
-            renderItem={(data) => <ForumItem post={data.item} />}
+            renderItem={(data) => (
+              <ForumItem post={data.item} image={data.item.image} />
+            )}
             keyExtractor={(item) => item.id}
           ></FlatList>
         ) : (

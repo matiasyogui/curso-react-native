@@ -20,7 +20,7 @@ export const Forums = ({ route }) => {
 
   const forumMap = () => {
     return postsFiltered.map((value) => {
-      return <ForumItem post={value} key={value.id} />;
+      return <ForumItem post={value} image={value.image} key={value.id} />;
     });
   };
 

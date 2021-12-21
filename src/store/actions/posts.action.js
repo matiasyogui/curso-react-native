@@ -1,12 +1,27 @@
+import * as FileSystem from "expo-file-system";
+
 import { URL_API } from "../../constants/Database";
 
 export const FILTERED_POSTS = "FILTERED_POSTS";
 export const NEW_POST = "NEW_POST";
 export const GET_POSTS = "GET_POSTS";
 
-export const newPost = (newID, title, description, forumID) => {
+export const newPost = (newID, title, description, forumID, image) => {
   return async (dispatch) => {
     try {
+      const fileName = image.split("/").pop();
+      const Path = FileSystem.documentDirectory + fileName;
+
+      try {
+        FileSystem.moveAsync({
+          from: image,
+          to: Path,
+        });
+      } catch (error) {
+        console.log(error.message);
+        throw error;
+      }
+
       const response = await fetch(`${URL_API}posts.json`, {
         method: "POST",
         headers: {
@@ -18,6 +33,7 @@ export const newPost = (newID, title, description, forumID) => {
           title: title,
           description: description,
           forumID: forumID,
+          image: Path,
         }),
       });
 
@@ -30,6 +46,7 @@ export const newPost = (newID, title, description, forumID) => {
         title: title,
         description: description,
         forumID: forumID,
+        image: Path,
       });
     } catch (error) {
       console.log(error.message);

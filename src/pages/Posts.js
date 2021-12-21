@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  ScrollViewBase,
+  ScrollViewComponent,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { ListItem } from "../components/ListItem";
 import { ModalApp } from "../components/ModalApp";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { getPosts } from "../store/actions/posts.action";
 import { useNavigation } from "@react-navigation/core";
 
@@ -18,7 +26,7 @@ export const Posts = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* <ModalApp
         modal={modal}
         setModal={setModal}
@@ -27,7 +35,7 @@ export const Posts = () => {
       />
  */}
       <ListItem posts={posts} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -38,7 +46,6 @@ const styles = StyleSheet.create({
   container: {
     width: "90%",
     height: "100%",
-    alignItems: "center",
     alignSelf: "center",
     fontFamily: "Poppins",
   },

@@ -6,6 +6,7 @@ import {
 } from "../actions/posts.action";
 
 import { POSTS } from "../../data/posts";
+import { Post } from "../../models/post";
 
 const initialState = {
   posts: [], //POSTS,
@@ -25,15 +26,16 @@ export const PostsReducer = (state = initialState, action) => {
         ),
       };
     case NEW_POST:
-      const newItem = {
-        id: action.id,
-        title: action.title,
-        description: action.description,
-        forum: action.forumID,
-      };
+      const newPost = new Post(
+        action.id,
+        action.title,
+        action.description,
+        action.forumID,
+        action.image
+      );
       return {
         ...state,
-        posts: [...state.posts, newItem],
+        posts: [...state.posts, newPost],
       };
     case GET_POSTS:
       return {
