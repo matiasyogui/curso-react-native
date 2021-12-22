@@ -26,7 +26,7 @@ export const Posts = () => {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       {/* <ModalApp
         modal={modal}
         setModal={setModal}
@@ -35,7 +35,7 @@ export const Posts = () => {
       />
  */}
       <ListItem posts={posts} />
-    </ScrollView>
+    </View>
   );
 };
 

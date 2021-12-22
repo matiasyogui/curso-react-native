@@ -24,8 +24,8 @@ export const ImageSelector = ({
     const { status } = await ImagePicker.getCameraPermissionsAsync();
 
     if (status !== "granted") {
-      Alert.alert("Permisos insuficientes.");
-
+      const { status } = await ImagePicker.requestCameraPermissionsAsync();
+      if (status !== "granted") Alert.alert("Permisos insuficientes.");
       return false;
     }
 
