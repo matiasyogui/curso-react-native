@@ -8,29 +8,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { NewPost } from "../pages/NewPost";
 import { Posts } from "../pages/Posts";
 import React from "react";
-import { Register } from "../pages/Register";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export const TabNavigator = () => {
-  const user = true;
-
   const BottomTabs = createBottomTabNavigator();
   const HomeStack = createNativeStackNavigator();
   const ForumsStack = createNativeStackNavigator();
   const NewPostStack = createNativeStackNavigator();
-  const AuthStack = createNativeStackNavigator();
-
-  function AuthStackRender() {
-    return (
-      <AuthStack.Navigator
-        initialRouteName="Auth"
-        screenOptions={{ headerShown: false }}
-      >
-        <AuthStack.Screen name={"Register"} component={Register} />
-      </AuthStack.Navigator>
-    );
-  }
 
   function HomeStackRender() {
     return (
@@ -99,69 +84,65 @@ export const TabNavigator = () => {
 
   return (
     <NavigationContainer>
-      {user ? (
-        <BottomTabs.Navigator
-          initialRouteName="HomeTab"
-          screenOptions={{
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarStyle: styles.tabBar,
+      <BottomTabs.Navigator
+        initialRouteName="HomeTab"
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false,
+          tabBarStyle: styles.tabBar,
+        }}
+      >
+        <BottomTabs.Screen
+          name="HomeTab"
+          component={HomeStackRender}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={styles.item}>
+                <Ionicons
+                  name={"md-home"}
+                  size={24}
+                  color={focused ? "green" : "black"}
+                />
+                <Text>Home</Text>
+              </View>
+            ),
           }}
-        >
-          <BottomTabs.Screen
-            name="HomeTab"
-            component={HomeStackRender}
-            options={{
-              tabBarIcon: ({ focused }) => (
-                <View style={styles.item}>
-                  <Ionicons
-                    name={"md-home"}
-                    size={24}
-                    color={focused ? "green" : "black"}
-                  />
-                  <Text>Home</Text>
-                </View>
-              ),
-            }}
-          />
+        />
 
-          <BottomTabs.Screen
-            name="New Post Tab"
-            component={NewPostStackRender}
-            options={{
-              tabBarIcon: ({ focused }) => (
-                <View style={styles.item}>
-                  <Ionicons
-                    name={"md-add-circle-outline"}
-                    size={24}
-                    color={focused ? "green" : "black"}
-                  />
-                  <Text>New Post</Text>
-                </View>
-              ),
-            }}
-          />
+        <BottomTabs.Screen
+          name="New Post Tab"
+          component={NewPostStackRender}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={styles.item}>
+                <Ionicons
+                  name={"md-add-circle-outline"}
+                  size={24}
+                  color={focused ? "green" : "black"}
+                />
+                <Text>New Post</Text>
+              </View>
+            ),
+          }}
+        />
 
-          <BottomTabs.Screen
-            name="ForumsTab"
-            component={ForumsStackRender}
-            options={{
-              tabBarIcon: ({ focused }) => (
-                <View style={styles.item}>
-                  <Ionicons
-                    name={"md-chatbubbles"}
-                    size={24}
-                    color={focused ? "green" : "black"}
-                  />
-                  <Text>Forums</Text>
-                </View>
-              ),
-            }}
-          />
-        </BottomTabs.Navigator>
-      ) : (
-        AuthStackRender()
-      )}
+        <BottomTabs.Screen
+          name="ForumsTab"
+          component={ForumsStackRender}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <View style={styles.item}>
+                <Ionicons
+                  name={"md-chatbubbles"}
+                  size={24}
+                  color={focused ? "green" : "black"}
+                />
+                <Text>Forums</Text>
+              </View>
+            ),
+          }}
+        />
+      </BottomTabs.Navigator>
     </NavigationContainer>
   );
 };

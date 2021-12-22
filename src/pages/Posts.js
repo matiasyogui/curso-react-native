@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
 import { ListItem } from "../components/ListItem";
-import { ModalApp } from "../components/ModalApp";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { getPosts } from "../store/actions/posts.action";
 import { useNavigation } from "@react-navigation/core";
 
