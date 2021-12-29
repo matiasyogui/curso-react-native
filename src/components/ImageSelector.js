@@ -18,7 +18,7 @@ export const ImageSelector = ({
   onImage,
 }) => {
   const [pickedURI, setPickedURI] = useState("");
-  const [id, setId] = useState(8);
+  const [id, setId] = useState(0);
   const [user, setUser] = useState(null);
 
   useEffect(() => {

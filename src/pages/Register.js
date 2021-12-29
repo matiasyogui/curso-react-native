@@ -1,4 +1,4 @@
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
 
 import React from "react";
@@ -32,24 +32,27 @@ export const Register = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         placeholder="Email"
         textContentType="emailAddress"
         onChangeText={(text) => setForm({ ...form, email: text })}
         value={form.email}
         blurOnSubmit={true}
+        style={styles.input}
       />
       <TextInput
         placeholder="Username"
         onChangeText={(text) => setForm({ ...form, username: text })}
         value={form.username}
+        style={styles.input}
         blurOnSubmit={true}
       />
       <TextInput
         placeholder="Password"
         secureTextEntry={true}
         onChangeText={(text) => setForm({ ...form, password: text })}
+        style={styles.input}
         value={form.password}
       />
       {error !== "" && <Text>{error}</Text>}
@@ -57,3 +60,20 @@ export const Register = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  input: {
+    marginVertical: "5%",
+    width: "80%",
+    height: "6%",
+    borderBottomColor: "black",
+    borderBottomWidth: 5,
+  },
+});

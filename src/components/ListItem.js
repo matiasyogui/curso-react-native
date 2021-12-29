@@ -7,13 +7,16 @@ import { useSelector } from "react-redux";
 export const ListItem = ({ posts }) => {
   return (
     <>
-      <Text style={{ fontFamily: "PoppinsBold" }}>POSTS:</Text>
       <View style={styles.container}>
         {posts.length > 0 ? (
           <FlatList
             data={posts}
             renderItem={(data) => (
-              <ForumItem post={data.item} image={data.item.image} />
+              <ForumItem
+                post={data.item}
+                image={data.item.image}
+                key={data.item.key}
+              />
             )}
             keyExtractor={(item) => item.id}
           ></FlatList>
@@ -27,7 +30,7 @@ export const ListItem = ({ posts }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%",
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 10,

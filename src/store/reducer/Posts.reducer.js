@@ -1,11 +1,10 @@
 import {
+  DELETE_POST,
   FILTERED_POSTS,
   GET_POSTS,
   NEW_POST,
-  getPosts,
 } from "../actions/posts.action";
 
-import { POSTS } from "../../data/posts";
 import { Post } from "../../models/post";
 
 const initialState = {
@@ -41,6 +40,11 @@ export const PostsReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.id),
       };
 
     default:

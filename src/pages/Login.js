@@ -1,4 +1,4 @@
-import { Button, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 
 import { auth } from "../firebase/config";
@@ -23,19 +23,21 @@ export const Login = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         placeholder="Email"
         textContentType="emailAddress"
         onChangeText={(text) => setForm({ ...form, email: text })}
         value={form.email}
         blurOnSubmit={true}
+        style={styles.input}
       />
       <TextInput
         placeholder="Password"
         secureTextEntry={true}
         onChangeText={(text) => setForm({ ...form, password: text })}
         value={form.password}
+        style={styles.input}
       />
 
       {error !== "" && <Text>{error}</Text>}
@@ -44,3 +46,20 @@ export const Login = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  input: {
+    marginVertical: "5%",
+    width: "80%",
+    height: "6%",
+    borderBottomColor: "black",
+    borderBottomWidth: 5,
+  },
+});

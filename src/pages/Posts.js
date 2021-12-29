@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  ScrollView,
-  ScrollViewBase,
-  ScrollViewComponent,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Colors } from "react-native/Libraries/NewAppScreen";
@@ -21,7 +14,7 @@ export const Posts = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, []);
+  }, [posts]);
 
   return (
     <View style={styles.container}>
@@ -43,7 +36,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "90%",
-    height: "100%",
+    height: "95%",
     alignSelf: "center",
     fontFamily: "Poppins",
   },

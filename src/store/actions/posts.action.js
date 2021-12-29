@@ -1,10 +1,13 @@
 import * as FileSystem from "expo-file-system";
 
+import { FirebaseError } from "@firebase/util";
 import { URL_API } from "../../constants/Database";
+import { db } from "../../firebase/config";
 
 export const FILTERED_POSTS = "FILTERED_POSTS";
 export const NEW_POST = "NEW_POST";
 export const GET_POSTS = "GET_POSTS";
+export const DELETE_POST = "DELETE_POST";
 
 export const newPost = (
   newID,
@@ -29,7 +32,7 @@ export const newPost = (
         throw error;
       }
 
-      const response = await fetch(`${URL_API}posts.json`, {
+      const response = await fetch(`${URL_API}/posts.json`, {
         method: "POST",
         headers: {
           "CONTENT-TYPE": "application/json",
@@ -62,6 +65,20 @@ export const newPost = (
     }
   };
 };
+
+/* export const deletePost = (key) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: DELETE_POST,
+        id: id,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+ */
 
 export const getPosts = () => {
   return async (dispatch) => {
