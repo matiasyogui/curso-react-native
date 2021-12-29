@@ -8,6 +8,8 @@ import {
 } from "react-native";
 
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export const ForumItem = ({ post, image }) => {
   return (
@@ -20,6 +22,7 @@ export const ForumItem = ({ post, image }) => {
         {image.includes(".jpg") && (
           <Image style={style.image} source={{ uri: image }} />
         )}
+        <Text>by: {post.username}</Text>
       </View>
     </View>
   );

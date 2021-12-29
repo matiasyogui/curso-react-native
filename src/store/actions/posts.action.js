@@ -6,7 +6,14 @@ export const FILTERED_POSTS = "FILTERED_POSTS";
 export const NEW_POST = "NEW_POST";
 export const GET_POSTS = "GET_POSTS";
 
-export const newPost = (newID, title, description, forumID, image) => {
+export const newPost = (
+  newID,
+  title,
+  description,
+  forumID,
+  image,
+  username
+) => {
   return async (dispatch) => {
     try {
       const fileName = image.split("/").pop();
@@ -34,6 +41,7 @@ export const newPost = (newID, title, description, forumID, image) => {
           description: description,
           forumID: forumID,
           image: Path,
+          username: username,
         }),
       });
 
@@ -47,6 +55,7 @@ export const newPost = (newID, title, description, forumID, image) => {
         description: description,
         forumID: forumID,
         image: Path,
+        username: username,
       });
     } catch (error) {
       console.log(error.message);

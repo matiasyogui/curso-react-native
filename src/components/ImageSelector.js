@@ -4,8 +4,11 @@ import { Alert, Button, Image, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 
 import { Colors } from "../constants/Colors";
+import { auth } from "../firebase/config";
 import { newPost } from "../store/actions/posts.action";
+import { onAuthStateChanged } from "@firebase/auth";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
 
 export const ImageSelector = ({
@@ -16,6 +19,18 @@ export const ImageSelector = ({
 }) => {
   const [pickedURI, setPickedURI] = useState("");
   const [id, setId] = useState(8);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.id;
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -47,6 +62,19 @@ export const ImageSelector = ({
     onImage(image.uri);
   };
 
+  const handleLibrary = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [16, 9],
+      quality: 0.8,
+    });
+
+    if (!result.cancelled) {
+      setPickedURI(result.uri);
+    }
+  };
+
   const onAdd = () => {
     setId(id + 1);
     console.log(
@@ -54,10 +82,18 @@ export const ImageSelector = ({
       inputTitle,
       inputDescription,
       selectedForum,
-      pickedURI
+      pickedURI,
+      user.displayName
     );
     dispatch(
-      newPost(id, inputTitle, inputDescription, selectedForum, pickedURI)
+      newPost(
+        id,
+        inputTitle,
+        inputDescription,
+        selectedForum,
+        pickedURI,
+        user.displayName
+      )
     );
     navigation.navigate("Posts");
   };
@@ -77,6 +113,12 @@ export const ImageSelector = ({
             title="Tomar foto"
             color={Colors.primary}
             onPress={handlerTakeImage}
+            style={{ marginRight: 10 }}
+          />
+          <Button
+            title="Elegir foto"
+            color={Colors.primary}
+            onPress={handleLibrary}
             style={{ marginRight: 10 }}
           />
           <Button
