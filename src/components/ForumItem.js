@@ -48,9 +48,9 @@ export const ForumItem = ({ post, image, key }) => {
         {image.includes(".jpg") && (
           <Image style={style.image} source={{ uri: image }} />
         )}
-        {user.displayName === post.username && (
+        {/* {user.displayName === post.username && (
           <Button title="Delete" onPress={handleDelete} />
-        )}
+        )} */}
       </View>
     </View>
   );

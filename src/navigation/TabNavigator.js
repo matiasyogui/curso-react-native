@@ -1,16 +1,17 @@
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
 
 import { Colors } from "../constants/Colors";
 import { Forums } from "../pages/Forums";
-import { Ionicons } from "@expo/vector-icons";
 import { ListOfForums } from "../pages/ListOfForums";
 import { Login } from "../pages/Login";
 import { NavigationContainer } from "@react-navigation/native";
 import { NewPost } from "../pages/NewPost";
 import { Posts } from "../pages/Posts";
 import { Register } from "../pages/Register";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { auth } from "../firebase/config";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -68,16 +69,9 @@ export const TabNavigator = () => {
             title: "REDDIT CLONE",
             headerRight: () => (
               <TouchableOpacity onPress={handleLogout}>
-                <Text>Logout</Text>
+                <SimpleLineIcons name="logout" size={24} color="black" />
               </TouchableOpacity>
             ),
-            /* headerRight: () => (
-              <Button
-                onPress={() => alert("This is a button!")}
-                title="Info"
-                color="#fff"
-              />
-            ), */
           }}
         />
       </HomeStack.Navigator>
@@ -97,7 +91,17 @@ export const TabNavigator = () => {
           },
         }}
       >
-        <NewPostStack.Screen name="NewPost" component={NewPost} />
+        <NewPostStack.Screen
+          name="NewPost"
+          component={NewPost}
+          options={{
+            headerRight: () => (
+              <TouchableOpacity onPress={handleLogout}>
+                <SimpleLineIcons name="logout" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
       </NewPostStack.Navigator>
     );
   }
@@ -115,12 +119,27 @@ export const TabNavigator = () => {
           },
         }}
       >
-        <ForumsStack.Screen name="ListOfForums" component={ListOfForums} />
+        <ForumsStack.Screen
+          name="ListOfForums"
+          component={ListOfForums}
+          options={{
+            headerRight: () => (
+              <TouchableOpacity onPress={handleLogout}>
+                <SimpleLineIcons name="logout" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+          }}
+        />
         <ForumsStack.Screen
           name="Forums"
           component={Forums}
           options={({ route }) => ({
             title: route.params.name,
+            headerRight: () => (
+              <TouchableOpacity onPress={handleLogout}>
+                <SimpleLineIcons name="logout" size={24} color="black" />
+              </TouchableOpacity>
+            ),
           })}
         />
       </ForumsStack.Navigator>
@@ -242,8 +261,8 @@ export const TabNavigator = () => {
               options={{
                 tabBarIcon: ({ focused }) => (
                   <View style={styles.item}>
-                    <Ionicons
-                      name={"md-chatbubbles"}
+                    <AntDesign
+                      name={"form"}
                       size={24}
                       color={focused ? "green" : "black"}
                     />
@@ -259,8 +278,8 @@ export const TabNavigator = () => {
               options={{
                 tabBarIcon: ({ focused }) => (
                   <View style={styles.item}>
-                    <Ionicons
-                      name={"md-chatbubbles"}
+                    <SimpleLineIcons
+                      name="login"
                       size={24}
                       color={focused ? "green" : "black"}
                     />
