@@ -80,6 +80,34 @@ export const newPost = (
 };
  */
 
+export const deletePost = (id) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${URL_API}/posts/${id}.json`, {
+        method: "DELETE",
+        headers: {
+          "CONTENT-TYPE": "application/json",
+        },
+        body: JSON.stringify({
+          type: DELETE_POST,
+          id: id,
+        }),
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      dispatch({
+        type: DELETE_POST,
+        id: id,
+      });
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+};
+
 export const getPosts = () => {
   return async (dispatch) => {
     try {
