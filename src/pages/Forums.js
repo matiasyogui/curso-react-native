@@ -1,5 +1,5 @@
-import { FlatList, Text, View } from "react-native";
 import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 import { filteredPosts, getPosts } from "../store/actions/posts.action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,12 +24,14 @@ export const Forums = ({ route }) => {
     });
   };
 
-  return (
-    <View>{forumMap()}</View>
-    /*     <FlatList
-      data={postsFiltered}
-      keyExtractor={(item) => item.id}
-      renderItem={renderForumItem}
-    /> */
-  );
+  return <View style={styles.container}>{forumMap()}</View>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+    width: "90%",
+    height: "95%",
+    alignSelf: "center",
+    fontFamily: "Poppins",
+  },
+});

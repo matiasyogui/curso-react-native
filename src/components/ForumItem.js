@@ -113,7 +113,10 @@ export const ForumItem = ({ post, image, key }) => {
 
 const style = StyleSheet.create({
   container: {
-    marginBottom: "2%",
+    marginVertical: "2%",
+    backgroundColor: "#713528",
+    padding: "5%",
+    borderRadius: 4,
   },
   textName: {
     fontFamily: "PoppinsBold",
@@ -145,5 +148,6 @@ const style = StyleSheet.create({
   },
   trash: {
     flexDirection: "row-reverse",
+    marginTop: "3%",
   },
 });

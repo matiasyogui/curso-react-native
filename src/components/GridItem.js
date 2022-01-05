@@ -4,16 +4,11 @@ import React from "react";
 
 export const GridItem = ({ item, onSelected }) => {
   return (
-    <View>
-      <TouchableOpacity
-        onPress={() => onSelected(item)}
-        style={styles.container}
-      >
-        <View style={[{ backgroundColor: item.color }, styles.gridItem]}>
-          <Text style={styles.title}>{item.name}</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={() => onSelected(item)} style={styles.container}>
+      <View style={[{ backgroundColor: item.color }, styles.gridItem]}>
+        <Text style={styles.title}>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -21,11 +16,11 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     borderRadius: 6,
-    margin: 15,
-    height: 160,
-    width: 160,
-    justifyContent: "flex-end",
-    alignItems: "flex-end",
+    margin: "5%",
+    height: "30%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   container: {
     borderRadius: 6,

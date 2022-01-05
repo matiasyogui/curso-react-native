@@ -1,6 +1,13 @@
 import * as ImagePicker from "expo-image-picker";
 
-import { Alert, Button, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 
 import { Colors } from "../constants/Colors";
@@ -109,29 +116,28 @@ export const ImageSelector = ({
           )}
         </View>
         <View style={styles.botones}>
-          <Button
-            title="Tomar foto"
-            color={Colors.primary}
-            onPress={handlerTakeImage}
-            style={{ marginRight: 10 }}
-          />
-          <Button
-            title="Elegir foto"
-            color={Colors.primary}
-            onPress={handleLibrary}
-            style={{ marginRight: 10 }}
-          />
-          <Button
-            title="Borrar foto"
-            color={Colors.primary}
+          <TouchableOpacity onPress={handlerTakeImage} style={styles.buttons}>
+            <Text>Take a photo!</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handleLibrary} style={styles.buttons}>
+            <Text>Choose a photo!</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
             onPress={() => {
               setPickedURI("");
             }}
-          />
+            style={styles.buttons}
+          >
+            <Text>Delete the photo</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
-      <Button title="AGREGAR" onPress={onAdd} />
+      <TouchableOpacity onPress={onAdd} style={styles.buttonPost}>
+        <Text>Post</Text>
+      </TouchableOpacity>
     </>
   );
 };
@@ -144,7 +150,7 @@ const styles = StyleSheet.create({
   },
   preview: {
     width: "100%",
-    height: "70%",
+    height: "65%",
     marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -157,5 +163,25 @@ const styles = StyleSheet.create({
   },
   botones: {
     flexDirection: "row",
+    justifyContent: "space-around",
+    alignContent: "center",
+  },
+  buttons: {
+    width: "30%",
+    backgroundColor: Colors.secondary,
+    padding: 10,
+    borderRadius: 4,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginHorizontal: "2%",
+  },
+  buttonPost: {
+    width: "30%",
+    backgroundColor: "lightblue",
+    padding: 10,
+    borderRadius: 4,
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: "2%",
   },
 });
